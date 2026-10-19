@@ -1,0 +1,2050 @@
+/*=========================================================
+ SMART PARKING
+ Hoja de estilos principal
+ Proyecto ADSO - SENA
+
+ Autores: grupo 6 ficha 3336134
+ Arquitectura Front-End v2.0
+=========================================================*/
+
+
+
+/*=========================================================
+01. IMPORTACIÓN DE FUENTES
+=========================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+
+
+/*=========================================================
+02. VARIABLES GLOBALES
+=========================================================*/
+
+:root{
+
+    /* Colores principales */
+
+    --primary:#1E3A8A;
+    --primary-dark:#16306F;
+    --secondary:#3B82F6;
+
+    /* Estados */
+
+    --success:#22C55E;
+    --warning:#FBBF24;
+    --danger:#EF4444;
+    --info:#0EA5E9;
+
+    /* Escala de grises */
+
+    --white:#FFFFFF;
+
+    --gray-50:#F9FAFB;
+    --gray-100:#F4F7FC;
+    --gray-200:#E5E7EB;
+    --gray-300:#D1D5DB;
+    --gray-400:#9CA3AF;
+    --gray-500:#6B7280;
+    --gray-700:#374151;
+    --gray-900:#1F2937;
+
+    /* Fondo */
+
+    --background:var(--gray-100);
+
+    /* Texto */
+
+    --text:var(--gray-900);
+    --text-light:var(--gray-500);
+
+    /* Bordes */
+
+    --border:var(--gray-200);
+
+    /* Sombras */
+
+    --shadow-sm:0 2px 6px rgba(0,0,0,.05);
+
+    --shadow-md:0 6px 18px rgba(0,0,0,.08);
+
+    --shadow-lg:0 20px 45px rgba(0,0,0,.15);
+
+    /* Bordes redondeados */
+
+    --radius-sm:8px;
+    --radius-md:12px;
+    --radius-lg:20px;
+    --radius-xl:28px;
+
+    /* Transiciones */
+
+    --transition:.30s ease;
+
+    /* Anchos */
+
+    --container:1200px;
+
+}
+
+
+
+/*=========================================================
+03. RESET
+=========================================================*/
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    -webkit-font-smoothing:antialiased;
+
+}
+
+
+
+/*=========================================================
+04. TIPOGRAFÍA
+=========================================================*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    color:var(--text);
+
+    font-weight:700;
+
+    margin-bottom:.5rem;
+
+}
+
+
+
+h1{
+
+    font-size:2.8rem;
+
+}
+
+
+
+h2{
+
+    font-size:2.2rem;
+
+}
+
+
+
+h3{
+
+    font-size:1.8rem;
+
+}
+
+
+
+h4{
+
+    font-size:1.4rem;
+
+}
+
+
+
+h5{
+
+    font-size:1.1rem;
+
+}
+
+
+
+p{
+
+    color:var(--text-light);
+
+    line-height:1.7;
+
+    margin-bottom:1rem;
+
+}
+
+
+
+small{
+
+    color:var(--gray-400);
+
+}
+
+
+
+/*=========================================================
+05. ENLACES
+=========================================================*/
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+
+
+a:hover{
+
+    text-decoration:none;
+
+}
+
+
+
+/*=========================================================
+06. CONTENEDORES
+=========================================================*/
+
+.container-custom{
+
+    width:100%;
+
+    max-width:var(--container);
+
+    margin:auto;
+
+}
+
+
+
+/*=========================================================
+07. UTILIDADES
+=========================================================*/
+
+.text-center{
+
+    text-align:center;
+
+}
+
+
+
+.text-right{
+
+    text-align:right;
+
+}
+
+
+
+.text-left{
+
+    text-align:left;
+
+}
+
+
+
+.w-100{
+
+    width:100%;
+
+}
+
+
+
+.d-flex{
+
+    display:flex;
+
+}
+
+
+
+.flex-column{
+
+    flex-direction:column;
+
+}
+
+
+
+.justify-between{
+
+    justify-content:space-between;
+
+}
+
+
+
+.justify-center{
+
+    justify-content:center;
+
+}
+
+
+
+.align-center{
+
+    align-items:center;
+
+}
+
+
+
+.gap-10{
+
+    gap:10px;
+
+}
+
+
+
+.gap-20{
+
+    gap:20px;
+
+}
+
+
+
+/* Márgenes */
+
+.mt-10{
+
+    margin-top:10px;
+
+}
+
+
+
+.mt-20{
+
+    margin-top:20px;
+
+}
+
+
+
+.mt-30{
+
+    margin-top:30px;
+
+}
+
+
+
+.mt-40{
+
+    margin-top:40px;
+
+}
+
+
+
+.mb-10{
+
+    margin-bottom:10px;
+
+}
+
+
+
+.mb-20{
+
+    margin-bottom:20px;
+
+}
+
+
+
+.mb-30{
+
+    margin-bottom:30px;
+
+}
+
+
+
+.mb-40{
+
+    margin-bottom:40px;
+
+}
+
+
+
+/*=========================================================
+08. BOTONES
+=========================================================*/
+
+.btn-custom{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:var(--radius-md);
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+
+
+.btn-custom:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+
+.btn-primary-custom{
+
+    background:var(--primary);
+
+    color:var(--white);
+
+}
+
+
+
+.btn-primary-custom:hover{
+
+    background:var(--primary-dark);
+
+}
+
+
+
+.btn-success-custom{
+
+    background:var(--success);
+
+    color:var(--white);
+
+}
+
+
+
+.btn-warning-custom{
+
+    background:var(--warning);
+
+    color:#000;
+
+}
+
+
+
+.btn-danger-custom{
+
+    background:var(--danger);
+
+    color:var(--white);
+
+}
+
+
+
+/*=========================================================
+09. TARJETAS
+=========================================================*/
+
+.card{
+
+    background:var(--white);
+
+    border-radius:var(--radius-lg);
+
+    box-shadow:var(--shadow-md);
+
+    transition:var(--transition);
+
+}
+
+
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+
+
+/*=========================================================
+10. FORMULARIOS
+=========================================================*/
+
+.form-label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.form-control{
+
+    height:52px;
+
+    border-radius:var(--radius-md);
+
+    border:1px solid var(--border);
+
+    transition:var(--transition);
+
+}
+
+
+
+.form-control:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 .15rem rgba(30,58,138,.20);
+
+}
+
+
+
+textarea.form-control{
+
+    min-height:120px;
+
+    resize:vertical;
+
+}
+/*=========================================================
+11. LOGIN
+=========================================================*/
+
+/* Página */
+
+.login-page{
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    padding:30px;
+
+}
+
+
+
+/* Contenedor principal */
+
+.login-container{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+/* Tarjeta */
+
+.login-card{
+
+    width:1050px;
+
+    min-height:620px;
+
+    background:var(--white);
+
+    border-radius:var(--radius-xl);
+
+    overflow:hidden;
+
+    display:flex;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.18);
+
+    transition:var(--transition);
+
+}
+
+
+
+.login-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+
+
+/* Panel izquierdo */
+
+.login-left{
+
+    width:50%;
+
+    background:linear-gradient(160deg,var(--primary),#2563EB);
+
+    color:var(--white);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:60px;
+
+}
+
+
+
+.login-left h1{
+
+    color:var(--white);
+
+    margin-top:30px;
+
+    text-align:center;
+
+    letter-spacing:1px;
+
+}
+
+
+
+.login-left p{
+
+    color:rgba(255,255,255,.90);
+
+    text-align:center;
+
+    margin-top:18px;
+
+    font-size:18px;
+
+    line-height:1.7;
+
+}
+
+
+
+/* Logo */
+
+.logo-circle{
+
+    width:140px;
+
+    height:140px;
+
+    border-radius:50%;
+
+    background:var(--white);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:70px;
+
+    color:var(--primary);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+
+}
+
+
+
+/* Panel derecho */
+
+.login-right{
+
+    width:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:60px;
+
+}
+
+
+
+/* Formulario */
+
+.login-form{
+
+    width:100%;
+
+    max-width:390px;
+
+}
+
+
+
+.login-form h2{
+
+    margin-bottom:10px;
+
+}
+
+
+
+.subtitle{
+
+    margin-bottom:35px;
+
+}
+
+
+
+/* Password */
+
+.password-wrapper{
+
+    position:relative;
+
+}
+
+
+
+.toggle-password{
+
+    position:absolute;
+
+    top:50%;
+
+    right:18px;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    color:var(--gray-500);
+
+    transition:var(--transition);
+
+}
+
+
+
+.toggle-password:hover{
+
+    color:var(--primary);
+
+}
+
+
+
+/* Recordarme */
+
+.form-check{
+
+    user-select:none;
+
+}
+
+
+
+/* Footer */
+
+.footer-login{
+
+    margin-top:40px;
+
+    text-align:center;
+
+    color:var(--gray-400);
+
+    font-size:13px;
+
+}
+
+
+
+/* Animaciones */
+
+.login-left,
+
+.login-right{
+
+    animation:fadeIn .7s ease;
+
+}
+
+
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/*=========================================================
+RESPONSIVE LOGIN
+=========================================================*/
+
+@media(max-width:992px){
+
+    .login-card{
+
+        width:100%;
+
+    }
+
+}
+
+
+
+@media(max-width:768px){
+
+    .login-page{
+
+        padding:15px;
+
+    }
+
+    .login-card{
+
+        flex-direction:column;
+
+        min-height:auto;
+
+    }
+
+    .login-left{
+
+        width:100%;
+
+        padding:40px;
+
+    }
+
+    .login-right{
+
+        width:100%;
+
+        padding:40px;
+
+    }
+
+    .login-form{
+
+        max-width:100%;
+
+    }
+
+    .logo-circle{
+
+        width:110px;
+
+        height:110px;
+
+        font-size:55px;
+
+    }
+
+    .login-left h1{
+
+        font-size:2rem;
+
+    }
+
+}
+/*=========================================================
+12. LAYOUT PRINCIPAL
+=========================================================*/
+
+.app-layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+    background:var(--background);
+
+}
+
+
+
+/*=========================================================
+13. SIDEBAR
+=========================================================*/
+
+.sidebar{
+
+    width:280px;
+
+    background:linear-gradient(180deg,var(--primary),var(--primary-dark));
+
+    color:var(--white);
+
+    display:flex;
+
+    flex-direction:column;
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    height:100vh;
+
+    overflow-y:auto;
+
+    transition:var(--transition);
+
+    box-shadow:var(--shadow-lg);
+
+    z-index:1000;
+
+}
+
+
+
+/* Logo */
+
+.sidebar-logo{
+
+    padding:30px 20px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+
+
+.sidebar-logo i{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.sidebar-logo h3{
+
+    color:var(--white);
+
+    margin-bottom:5px;
+
+}
+
+
+
+.sidebar-logo p{
+
+    color:rgba(255,255,255,.75);
+
+    font-size:14px;
+
+    margin:0;
+
+}
+
+
+
+/* Menú */
+
+.sidebar-menu{
+
+    flex:1;
+
+    padding:20px 15px;
+
+}
+
+
+
+.sidebar-menu ul{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+
+
+.sidebar-menu li{
+
+    margin-bottom:8px;
+
+}
+
+
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:14px 18px;
+
+    border-radius:var(--radius-md);
+
+    color:rgba(255,255,255,.90);
+
+    font-weight:500;
+
+    transition:var(--transition);
+
+}
+
+
+
+.sidebar-menu a i{
+
+    font-size:18px;
+
+    width:24px;
+
+    text-align:center;
+
+}
+
+
+
+.sidebar-menu a:hover{
+
+    background:rgba(255,255,255,.12);
+
+    color:var(--white);
+
+    transform:translateX(5px);
+
+}
+
+
+
+.sidebar-menu .active{
+
+    background:rgba(255,255,255,.20);
+
+    color:var(--white);
+
+    font-weight:600;
+
+}
+
+
+
+/* Footer */
+
+.sidebar-footer{
+
+    padding:20px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    text-align:center;
+
+}
+
+
+
+.sidebar-footer small{
+
+    color:rgba(255,255,255,.65);
+
+}
+
+
+
+/*=========================================================
+14. CONTENIDO
+=========================================================*/
+
+.main-content{
+
+    flex:1;
+
+    margin-left:280px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:100vh;
+
+}
+
+
+
+/*=========================================================
+15. TOPBAR
+=========================================================*/
+
+.topbar{
+
+    height:75px;
+
+    background:var(--white);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 30px;
+
+    box-shadow:var(--shadow-sm);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:500;
+
+}
+
+
+
+/* Título */
+
+.topbar-title h2{
+
+    margin:0;
+
+    font-size:1.6rem;
+
+}
+
+
+
+.topbar-title p{
+
+    margin:2px 0 0;
+
+    font-size:14px;
+
+}
+
+
+
+/* Acciones */
+
+.topbar-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+
+
+/* Botones redondos */
+
+.icon-button{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:var(--gray-100);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+
+
+.icon-button:hover{
+
+    background:var(--primary);
+
+    color:var(--white);
+
+}
+
+
+
+/* Usuario */
+
+.user-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+}
+
+
+
+.user-avatar{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:var(--white);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:bold;
+
+    font-size:18px;
+
+}
+
+
+
+.user-info h6{
+
+    margin:0;
+
+}
+
+
+
+.user-info small{
+
+    color:var(--gray-500);
+
+}
+
+
+
+/*=========================================================
+16. CONTENEDOR DE PÁGINA
+=========================================================*/
+
+.page-content{
+
+    flex:1;
+
+    padding:30px;
+
+}
+
+
+
+/*=========================================================
+RESPONSIVE SIDEBAR
+=========================================================*/
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        width:80px;
+
+    }
+
+    .sidebar-logo h3,
+
+    .sidebar-logo p,
+
+    .sidebar-menu span,
+
+    .sidebar-footer{
+
+        display:none;
+
+    }
+
+    .sidebar-menu a{
+
+        justify-content:center;
+
+        padding:15px;
+
+    }
+
+    .sidebar-menu a i{
+
+        margin:0;
+
+        width:auto;
+
+        font-size:22px;
+
+    }
+
+    .main-content{
+
+        margin-left:80px;
+
+    }
+
+}
+
+
+
+@media(max-width:768px){
+
+    .sidebar{
+
+        transform:translateX(-100%);
+
+    }
+
+    .sidebar.show{
+
+        transform:translateX(0);
+
+    }
+
+    .main-content{
+
+        margin-left:0;
+
+    }
+
+    .topbar{
+
+        padding:0 15px;
+
+    }
+
+    .topbar-title h2{
+
+        font-size:1.2rem;
+
+    }
+
+    .user-info{
+
+        display:none;
+
+    }
+
+    .page-content{
+
+        padding:20px;
+
+    }
+
+}
+/*=========================================================
+17. GRID DEL DASHBOARD
+=========================================================*/
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+/*=========================================================
+18. TARJETAS KPI
+=========================================================*/
+
+.kpi-card{
+
+    background:var(--white);
+
+    border-radius:var(--radius-lg);
+
+    padding:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:var(--shadow-md);
+
+    transition:var(--transition);
+
+    border-left:6px solid var(--primary);
+
+}
+
+.kpi-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+.kpi-info h6{
+
+    margin:0;
+
+    color:var(--gray-500);
+
+    font-size:14px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+.kpi-info h2{
+
+    margin-top:10px;
+
+    margin-bottom:0;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+}
+
+.kpi-info small{
+
+    display:block;
+
+    margin-top:8px;
+
+}
+
+.kpi-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:32px;
+
+    color:var(--white);
+
+}
+
+.kpi-primary{
+
+    border-left-color:var(--primary);
+
+}
+
+.kpi-primary .kpi-icon{
+
+    background:var(--primary);
+
+}
+
+.kpi-success{
+
+    border-left-color:var(--success);
+
+}
+
+.kpi-success .kpi-icon{
+
+    background:var(--success);
+
+}
+
+.kpi-warning{
+
+    border-left-color:var(--warning);
+
+}
+
+.kpi-warning .kpi-icon{
+
+    background:var(--warning);
+
+    color:#000;
+
+}
+
+.kpi-danger{
+
+    border-left-color:var(--danger);
+
+}
+
+.kpi-danger .kpi-icon{
+
+    background:var(--danger);
+
+}
+
+
+
+/*=========================================================
+19. PANEL PRINCIPAL
+=========================================================*/
+
+.panel{
+
+    background:var(--white);
+
+    border-radius:var(--radius-lg);
+
+    box-shadow:var(--shadow-md);
+
+    margin-bottom:30px;
+
+    overflow:hidden;
+
+}
+
+.panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 25px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.panel-header h4{
+
+    margin:0;
+
+}
+
+.panel-body{
+
+    padding:25px;
+
+}
+
+.panel-footer{
+
+    padding:18px 25px;
+
+    border-top:1px solid var(--border);
+
+    background:var(--gray-50);
+
+}
+
+
+
+/*=========================================================
+20. TABLAS
+=========================================================*/
+
+.table-responsive{
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+.table-custom{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:var(--white);
+
+}
+
+.table-custom thead{
+
+    background:var(--primary);
+
+    color:var(--white);
+
+}
+
+.table-custom th{
+
+    padding:16px;
+
+    text-align:left;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.table-custom td{
+
+    padding:15px;
+
+    border-bottom:1px solid var(--border);
+
+    vertical-align:middle;
+
+}
+
+.table-custom tbody tr{
+
+    transition:var(--transition);
+
+}
+
+.table-custom tbody tr:hover{
+
+    background:#F8FAFC;
+
+}
+
+
+
+/*=========================================================
+21. BADGES
+=========================================================*/
+
+.badge-custom{
+
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+.badge-success{
+
+    background:#DCFCE7;
+
+    color:#166534;
+
+}
+
+.badge-warning{
+
+    background:#FEF3C7;
+
+    color:#92400E;
+
+}
+
+.badge-danger{
+
+    background:#FEE2E2;
+
+    color:#991B1B;
+
+}
+
+.badge-info{
+
+    background:#DBEAFE;
+
+    color:#1E3A8A;
+
+}
+
+
+
+/*=========================================================
+22. ALERTAS
+=========================================================*/
+
+.alert-custom{
+
+    padding:18px 22px;
+
+    border-radius:var(--radius-md);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+.alert-success{
+
+    background:#DCFCE7;
+
+    color:#166534;
+
+}
+
+.alert-warning{
+
+    background:#FEF3C7;
+
+    color:#92400E;
+
+}
+
+.alert-danger{
+
+    background:#FEE2E2;
+
+    color:#991B1B;
+
+}
+
+.alert-info{
+
+    background:#DBEAFE;
+
+    color:#1E3A8A;
+
+}
+
+
+
+/*=========================================================
+23. WIDGETS
+=========================================================*/
+
+.widget{
+
+    background:var(--white);
+
+    border-radius:var(--radius-lg);
+
+    padding:25px;
+
+    box-shadow:var(--shadow-md);
+
+    margin-bottom:25px;
+
+}
+
+.widget-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.widget-title h5{
+
+    margin:0;
+
+}
+
+.widget-value{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+}
+
+
+
+/*=========================================================
+24. ESTADOS
+=========================================================*/
+
+.status-online{
+
+    color:var(--success);
+
+    font-weight:600;
+
+}
+
+.status-offline{
+
+    color:var(--danger);
+
+    font-weight:600;
+
+}
+
+.status-pending{
+
+    color:#D97706;
+
+    font-weight:600;
+
+}
+
+
+
+/*=========================================================
+25. LOADER
+=========================================================*/
+
+.loader{
+
+    width:45px;
+
+    height:45px;
+
+    border:5px solid var(--gray-200);
+
+    border-top:5px solid var(--primary);
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+    margin:auto;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+
+/*=========================================================
+26. ANIMACIONES
+=========================================================*/
+
+.fade-up{
+
+    animation:fadeUp .45s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.fade-in{
+
+    animation:fadeIn .40s ease;
+
+}
+
+.zoom-in{
+
+    animation:zoomIn .35s ease;
+
+}
+
+@keyframes zoomIn{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+
+/*=========================================================
+27. RESPONSIVE DASHBOARD
+=========================================================*/
+
+@media(max-width:992px){
+
+    .dashboard-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .kpi-card{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:20px;
+
+    }
+
+    .panel-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+    }
+
+    .table-custom{
+
+        min-width:700px;
+
+    }
+
+}

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!-- =====================================================
+        SMART PARKING
+        Consulta de Vehículos
+    ====================================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Parking | Consulta de Vehículos</title>
+
+    <meta name="description"
+        content="Consulta de información de vehículos registrados">
+
+    <meta name="theme-color"
+        content="#1E3A8A">
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- =====================================================
+        SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <i class="bi bi-p-square-fill"></i>
+
+            <h3>
+
+                SMART PARKING
+
+            </h3>
+
+            <p>
+
+                Sistema de Gestión
+
+            </p>
+
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <ul>
+
+                <li>
+
+                    <a href="dashboard.html">
+
+                        <i class="bi bi-speedometer2"></i>
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="ingreso.html">
+
+                        <i class="bi bi-box-arrow-in-right"></i>
+
+                        Registrar Ingreso
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a
+                        href="consulta.html"
+                        class="active">
+
+                        <i class="bi bi-search"></i>
+
+                        Consultar Vehículo
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#">
+
+                        <i class="bi bi-box-arrow-right"></i>
+
+                        Registrar Salida
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#">
+
+                        <i class="bi bi-clipboard-data-fill"></i>
+
+                        Reportes
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#">
+
+                        <i class="bi bi-gear-fill"></i>
+
+                        Configuración
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </aside>
+
+    <!-- =====================================================
+        CONTENIDO
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <h2>
+
+                    Consulta de Vehículos
+
+                </h2>
+
+                <p>
+
+                    Búsqueda de información registrada
+
+                </p>
+
+            </div>
+
+            <div class="user-profile">
+
+                <div class="user-avatar">
+
+                    J
+
+                </div>
+
+                <div>
+
+                    <strong>
+
+                        Jorge Cabrejo
+
+                    </strong>
+
+                    <br>
+
+                    <small>
+
+                        Administrador
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- ============================================
+            CONTENIDO
+        ============================================= -->
+
+        <section class="page-content">
+
+            <!-- ============================================
+                BÚSQUEDA
+            ============================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h4>
+
+                        Buscar Vehículo
+
+                    </h4>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="row align-items-end">
+
+                        <div class="col-md-5 mb-3">
+
+                            <label class="form-label">
+
+                                Buscar por Placa
+
+                            </label>
+
+                            <input
+                                id="buscarPlaca"
+                                type="text"
+                                class="form-control"
+                                placeholder="ABC123">
+
+                        </div>
+
+                        <div class="col-md-5 mb-3">
+
+                            <label class="form-label">
+
+                                Buscar por Documento
+
+                            </label>
+
+                            <input
+                                id="buscarDocumento"
+                                type="text"
+                                class="form-control"
+                                placeholder="Número de identificación">
+
+                        </div>
+
+                        <div class="col-md-2 mb-3 d-grid">
+
+                            <button
+                                type="button"
+                                class="btn-custom btn-primary-custom">
+
+                                <i class="bi bi-search"></i>
+
+                                Buscar
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ============================================
+                INFORMACIÓN DEL VEHÍCULO
+            ============================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h4>
+
+                        Información del Vehículo
+
+                    </h4>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                Placa
+
+                            </label>
+
+                            <input
+                                id="placaResultado"
+                                type="text"
+                                class="form-control"
+                                value="ABC123"
+                                readonly>
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                Tipo
+
+                            </label>
+
+                            <input
+                                id="tipoResultado"
+                                type="text"
+                                class="form-control"
+                                value="Automóvil"
+                                readonly>
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                Color
+
+                            </label>
+
+                            <input
+                                id="colorResultado"
+                                type="text"
+                                class="form-control"
+                                value="Blanco"
+                                readonly>
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                Estado
+
+                            </label>
+
+                            <input
+                                id="estadoResultado"
+                                type="text"
+                                class="form-control"
+                                value="Dentro del Parqueadero"
+                                readonly>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ============================================
+                INFORMACIÓN DEL PROPIETARIO
+            ============================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h4>
+
+                        Información del Propietario
+
+                    </h4>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Nombre
+
+                            </label>
+
+                            <input
+                                id="nombreResultado"
+                                type="text"
+                                class="form-control"
+                                value="Juan Pérez"
+                                readonly>
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                Documento
+
+                            </label>
+
+                            <input
+                                id="documentoResultado"
+                                type="text"
+                                class="form-control"
+                                value="1111111111"
+                                readonly>
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                Teléfono
+
+                            </label>
+
+                            <input
+                                id="telefonoResultado"
+                                type="text"
+                                class="form-control"
+                                value="3001234567"
+                                readonly>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ============================================
+                INFORMACIÓN DEL PARQUEO
+            ============================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h4>
+
+                        Información del Parqueo
+
+                    </h4>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                Cupo
+
+                            </label>
+
+                            <input
+                                id="cupoResultado"
+                                type="text"
+                                class="form-control"
+                                value="A-03"
+                                readonly>
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                Fecha de Ingreso
+
+                            </label>
+
+                            <input
+                                id="fechaResultado"
+                                type="text"
+                                class="form-control"
+                                value="29/07/2026"
+                                readonly>
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                Hora de Ingreso
+
+                            </label>
+
+                            <input
+                                id="horaResultado"
+                                type="text"
+                                class="form-control"
+                                value="08:15 AM"
+                                readonly>
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                Tipo de Servicio
+
+                            </label>
+
+                            <input
+                                id="servicioResultado"
+                                type="text"
+                                class="form-control"
+                                value="Hora"
+                                readonly>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+
+                            <label class="form-label">
+
+                                Tiempo Transcurrido
+
+                            </label>
+
+                            <input
+                                id="tiempoResultado"
+                                type="text"
+                                class="form-control"
+                                value="2 Horas 15 Minutos"
+                                readonly>
+
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+
+                            <label class="form-label">
+
+                                Valor Acumulado
+
+                            </label>
+
+                            <input
+                                id="valorResultado"
+                                type="text"
+                                class="form-control"
+                                value="$12.000"
+                                readonly>
+
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+
+                            <label class="form-label">
+
+                                Estado del Pago
+
+                            </label>
+
+                            <input
+                                id="pagoResultado"
+                                type="text"
+                                class="form-control"
+                                value="Pendiente"
+                                readonly>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ============================================
+                HISTORIAL DE MOVIMIENTOS
+            ============================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h4>
+
+                        Historial de Movimientos
+
+                    </h4>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+
+                        <table class="table-custom">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Movimiento</th>
+                                    <th>Cupo</th>
+                                    <th>Estado</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>29/07/2026</td>
+                                    <td>08:15 AM</td>
+                                    <td>Ingreso</td>
+                                    <td>A-03</td>
+
+                                    <td>
+
+                                        <span class="badge-custom badge-success">
+
+                                            Activo
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>25/07/2026</td>
+                                    <td>05:48 PM</td>
+                                    <td>Salida</td>
+                                    <td>B-02</td>
+
+                                    <td>
+
+                                        <span class="badge-custom badge-secondary">
+
+                                            Finalizado
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>25/07/2026</td>
+                                    <td>02:17 PM</td>
+                                    <td>Ingreso</td>
+                                    <td>B-02</td>
+
+                                    <td>
+
+                                        <span class="badge-custom badge-secondary">
+
+                                            Finalizado
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ============================================
+                ACCIONES
+            ============================================= -->
+
+            <div class="panel">
+
+                <div class="panel-body">
+
+                    <div class="d-flex justify-content-end gap-3 flex-wrap">
+
+                        <button
+                            type="button"
+                            class="btn-custom btn-secondary-custom"
+                            onclick="history.back()">
+
+                            <i class="bi bi-arrow-left-circle"></i>
+
+                            Regresar
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn-custom btn-warning-custom">
+
+                            <i class="bi bi-pencil-square"></i>
+
+                            Editar
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn-custom btn-primary-custom">
+
+                            <i class="bi bi-printer-fill"></i>
+
+                            Imprimir
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn-custom btn-danger-custom">
+
+                            <i class="bi bi-box-arrow-right"></i>
+
+                            Registrar Salida
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ============================================
+                FOOTER
+            ============================================= -->
+
+            <footer class="mt-4 text-center">
+
+                <small>
+
+                    © 2026 Smart Parking |
+                    Sistema de Gestión de Parqueaderos |
+                    ADSO - SENA
+
+                </small>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ============================================
+    BOOTSTRAP
+============================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ============================================
+    JAVASCRIPT
+============================================= -->
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>

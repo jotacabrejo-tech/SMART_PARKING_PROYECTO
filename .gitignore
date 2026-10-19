@@ -1,0 +1,57 @@
+# ==============================================================================
+# SMART PARKING - REGLAS DE EXCLUSIÓN GIT (.gitignore)
+# Evidencia SENA GA7-220501096-AA2-EV01
+# ==============================================================================
+
+# --- Seguridad y Credenciales Locales (NUNCA SUBIR) ---
+**/db.properties
+db.properties
+*.env
+*.credentials
+secrets/
+
+# --- Compilación y Salidas Maven / Java ---
+target/
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+# --- Archivos de registro y temporales ---
+*.log
+*.tmp
+*.bak
+*.swp
+
+# --- Entornos de Desarrollo (IDEs) ---
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Visual Studio Code
+.vscode/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+
+# --- Sistema Operativo ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*

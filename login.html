@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!-- =====================================================
+         SMART PARKING
+         Sistema de Gestión de Parqueaderos
+         Proyecto ADSO - SENA
+         Versión Front-End 2.0
+    ====================================================== -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Parking | Iniciar Sesión</title>
+
+    <meta name="description"
+        content="Sistema inteligente para la administración y control de parqueaderos.">
+
+    <meta name="author"
+        content="Jorge Cabrejo">
+
+    <meta name="theme-color"
+        content="#1E3A8A">
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Hoja de estilos -->
+
+    <link rel="stylesheet"
+        href="css/style.css">
+
+    <!-- Favicon (Pendiente) -->
+
+    <!--
+        <link rel="icon" href="img/favicon.ico">
+    -->
+
+</head>
+
+<body class="login-page">
+
+    <!-- =====================================================
+         CONTENEDOR PRINCIPAL
+    ====================================================== -->
+
+    <main class="login-container">
+
+        <!-- Tarjeta Principal -->
+
+        <section class="login-card">
+
+            <!-- =====================================================
+                 PANEL IZQUIERDO
+            ====================================================== -->
+
+            <aside class="login-left">
+
+                <!-- Logo -->
+
+                <div class="logo-circle">
+
+                    <i class="bi bi-p-square-fill"></i>
+
+                </div>
+
+                <!-- Nombre del sistema -->
+
+                <h1>
+
+                    SMART PARKING
+
+                </h1>
+
+                <p>
+
+                    Sistema inteligente para la administración y control de
+                    parqueaderos.
+
+                </p>
+
+                <!-- Beneficios -->
+
+                <div class="mt-5 w-100">
+
+                    <div class="d-flex align-items-center gap-20 mb-20">
+
+                        <i class="bi bi-check-circle-fill fs-4"></i>
+
+                        <span>
+
+                            Registro rápido de ingreso y salida de vehículos
+
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex align-items-center gap-20 mb-20">
+
+                        <i class="bi bi-check-circle-fill fs-4"></i>
+
+                        <span>
+
+                            Consulta inmediata por placa
+
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex align-items-center gap-20 mb-20">
+
+                        <i class="bi bi-check-circle-fill fs-4"></i>
+
+                        <span>
+
+                            Gestión de cupos disponibles en tiempo real
+
+                        </span>
+
+                    </div>
+
+                    <div class="d-flex align-items-center gap-20">
+
+                        <i class="bi bi-check-circle-fill fs-4"></i>
+
+                        <span>
+
+                            Reportes administrativos y estadísticas
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+            <!-- =====================================================
+                 PANEL DERECHO
+            ====================================================== -->
+
+            <section class="login-right">
+                                <div class="login-form">
+
+                    <h2>Iniciar Sesión</h2>
+
+                    <p class="subtitle">
+
+                        Ingrese sus credenciales para acceder al sistema.
+
+                    </p>
+
+                    <form id="loginForm" novalidate>
+
+                        <!-- Usuario -->
+
+                        <div class="mb-4">
+
+                            <label for="usuario" class="form-label">
+
+                                Usuario
+
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+
+                                    <i class="bi bi-person-fill"></i>
+
+                                </span>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="usuario"
+                                    name="usuario"
+                                    placeholder="Ingrese su usuario"
+                                    autocomplete="username"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Contraseña -->
+
+                        <div class="mb-4">
+
+                            <label for="password" class="form-label">
+
+                                Contraseña
+
+                            </label>
+
+                            <div class="input-group password-wrapper">
+
+                                <span class="input-group-text">
+
+                                    <i class="bi bi-lock-fill"></i>
+
+                                </span>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Ingrese su contraseña"
+                                    autocomplete="current-password"
+                                    required>
+
+                                <button
+                                    class="btn btn-outline-secondary"
+                                    type="button"
+                                    id="togglePassword"
+                                    aria-label="Mostrar contraseña">
+
+                                    <i class="bi bi-eye-fill"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Opciones -->
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                            <div class="form-check">
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="rememberMe">
+
+                                <label
+                                    class="form-check-label"
+                                    for="rememberMe">
+
+                                    Recordarme
+
+                                </label>
+
+                            </div>
+
+                            <a href="#">
+
+                                ¿Olvidó su contraseña?
+
+                            </a>
+
+                        </div>
+
+                        <!-- Botón -->
+
+                        <button
+                            type="submit"
+                            class="btn-custom btn-primary-custom w-100">
+
+                            <i class="bi bi-box-arrow-in-right"></i>
+
+                            Ingresar
+
+                        </button>
+
+                    </form>
+
+                    <!-- Footer -->
+
+                    <div class="footer-login">
+
+                        <p>
+
+                            Smart Parking © 2026
+
+                        </p>
+
+                        <small>
+
+                            Sistema de Gestión de Parqueaderos
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- Bootstrap -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript del Proyecto -->
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
