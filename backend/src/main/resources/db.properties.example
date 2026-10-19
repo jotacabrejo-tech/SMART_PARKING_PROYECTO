@@ -1,0 +1,22 @@
+# ==============================================================================
+# SMART PARKING - CONFIGURACIÓN DE CONEXIÓN JDBC A BASE DE DATOS
+# Evidencia SENA GA7-220501096-AA2-EV01
+# ==============================================================================
+# Instrucciones:
+# 1. Copie este archivo como 'db.properties' en este mismo directorio.
+# 2. Reemplace los valores con las credenciales de su base de datos local.
+# 3. NOTA DE SEGURIDAD: 'db.properties' está ignorado en .gitignore y NUNCA
+#    debe ser publicado en el repositorio de control de versiones.
+# ==============================================================================
+
+# URL de conexión JDBC hacia MySQL (Base de datos: smart_parking)
+db.url=jdbc:mysql://localhost:3306/smart_parking?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Bogota
+
+# Usuario de MySQL
+db.user=root
+
+# Contraseña de MySQL (Dejar vacía si no tiene o ingresar la clave local)
+db.password=TU_CONTRASENA_AQUI
+
+# Parámetros opcionales del Driver
+db.driver=com.mysql.cj.jdbc.Driver
