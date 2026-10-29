@@ -5,6 +5,8 @@ import com.sena.smartparking.dao.RegistroParqueoDAO;
 import com.sena.smartparking.exception.DatabaseException;
 import com.sena.smartparking.model.RegistroParqueo;
 
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +27,7 @@ import java.util.Optional;
  * Proyecto: Smart Parking - ADSO SENA
  * Evidencia: GA7-220501096-AA2-EV01
  */
+@Repository
 public class RegistroParqueoDAOImpl implements RegistroParqueoDAO {
 
     private static final String SQL_INSERT = 

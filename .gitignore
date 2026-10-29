@@ -55,3 +55,7 @@ Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
 ._*
+
+# --- Paquetes de Entrega Académica (ZIP generados localmente) ---
+entregas/
+*.zip
