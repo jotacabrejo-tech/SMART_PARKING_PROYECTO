@@ -1,6 +1,6 @@
-EVIDENCIA SENA: GA7-220501096-AA5-EV04 — API del proyecto
-PROYECTO: SMART PARKING — Sistema de Gestión de Parqueaderos
+PROYECTO PERMANENTE: SMART PARKING — Sistema de Gestión de Parqueaderos
+EVIDENCIA ACADÉMICA ACTUAL: GA7-220501096-AA5-EV04 — API del proyecto
 PROGRAMA: Tecnología en Análisis y Desarrollo de Software (ADSO) — Ficha 3336134 | Grupo 6
 RAMA PRINCIPAL: main
-REPOSITORIO GITHUB:
-https://github.com/jotacabrejo-tech/SMART_PARKING_GA7_AA2_EV01
+REPOSITORIO GITHUB PERMANENTE:
+https://github.com/jotacabrejo-tech/SMART_PARKING_PROYECTO

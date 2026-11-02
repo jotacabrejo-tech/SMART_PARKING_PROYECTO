@@ -1,10 +1,9 @@
-# Smart Parking — API del Proyecto (`GA7-220501096-AA5-EV04`)
+# SMART PARKING — Sistema de Gestión de Parqueaderos
 
-**Evidencia SENA:** `GA7-220501096-AA5-EV04 — API del proyecto`  
-**Proyecto:** Smart Parking — Sistema de Gestión de Parqueaderos  
-**Programa de Formación:** Tecnología en Análisis y Desarrollo de Software (ADSO)  
-**Ficha:** 3336134 | **Grupo:** 6  
-**Repositorio Oficial:** [https://github.com/jotacabrejo-tech/SMART_PARKING_GA7_AA2_EV01](https://github.com/jotacabrejo-tech/SMART_PARKING_GA7_AA2_EV01)
+* **Proyecto Permanente:** `SMART PARKING — Sistema de Gestión de Parqueaderos`
+* **Evidencia Académica Actual:** `GA7-220501096-AA5-EV04 — API del proyecto`
+* **Programa de Formación:** Tecnología en Análisis y Desarrollo de Software (ADSO) — Ficha 3336134 | Grupo 6
+* **Repositorio Permanente en GitHub:** [https://github.com/jotacabrejo-tech/SMART_PARKING_PROYECTO](https://github.com/jotacabrejo-tech/SMART_PARKING_PROYECTO)
 
 ---
 
@@ -98,3 +97,4 @@ SMART_PARKING/
    * **Swagger UI:** `http://localhost:8080/swagger-ui/index.html`
    * **OpenAPI JSON:** `http://localhost:8080/api-docs`
 4. Consulte la guía técnica completa de endpoints y pruebas en Postman en [`backend/README.md`](backend/README.md).
+
