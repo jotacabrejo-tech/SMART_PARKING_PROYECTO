@@ -1,41 +1,75 @@
-# Smart Parking — Backend API REST con Spring Boot 3 y JDBC
+# Smart Parking — API del Proyecto (`GA7-220501096-AA5-EV04`)
 
-**Evidencia SENA:** `GA7-220501096-AA5-EV03 — Diseño y desarrollo de servicios web – proyecto`  
-*(Evolución modular a partir de la evidencia GA7-220501096-AA2-EV01)*  
+**Evidencia SENA:** `GA7-220501096-AA5-EV04 — API del proyecto`  
+**Proyecto:** Smart Parking — Sistema de Gestión de Parqueaderos  
 **Programa de Formación:** Tecnología en Análisis y Desarrollo de Software (ADSO)  
 **Ficha:** 3336134 | **Grupo:** 6  
-**Repositorio Oficial:** [https://github.com/jotacabrejo-tech/SMART_PARKING_GA7_AA2_EV01](https://github.com/jotacabrejo-tech/SMART_PARKING_GA7_AA2_EV01)
+**Repositorio Oficial en GitHub:** [https://github.com/jotacabrejo-tech/SMART_PARKING_GA7_AA2_EV01](https://github.com/jotacabrejo-tech/SMART_PARKING_GA7_AA2_EV01)
 
 ---
 
-## 1. Nombre y Objetivo del Proyecto
+## 1. Descripción General de Smart Parking y de la API del Proyecto
 
-**Smart Parking Backend** es el subsistema de servicios web RESTful para la plataforma de gestión de parqueaderos **Smart Parking**. Su objetivo en la evidencia **GA7-220501096-AA5-EV03** es exponer mediante una arquitectura en capas (`Controller` → `Service` → `DAO JDBC` → `MySQL`) las operaciones de negocio para el registro de ingresos y salidas de vehículos, la administración de clientes y la gestión de pagos y recaudos, aplicando estándares HTTP/REST, validación declarativa de datos, manejo centralizado de errores y documentación interactiva OpenAPI 3 / Swagger UI.
+**Smart Parking** es un sistema de gestión de parqueaderos diseñado para controlar el flujo de ingreso y salida de vehículos, la administración de clientes frecuentes o propietarios, y el registro de pagos y recaudos derivados del servicio de estacionamiento.
+
+Este módulo (`backend/`) constituye la **API REST del proyecto** correspondiente a la evidencia **`GA7-220501096-AA5-EV04 — API del proyecto`**. Implementa una arquitectura limpia en capas (`Controller` → `Service` → `DAO JDBC` → `MySQL`) utilizando **Spring Boot 3.3.4** y **Java 21 LTS**, exponiendo endpoints RESTful con formato JSON, validaciones declarativas (`@Valid`), manejo centralizado de errores HTTP y documentación interactiva con **OpenAPI 3 / Swagger UI**.
 
 ---
 
-## 2. Tecnologías Utilizadas y Requisitos Previos
+## 2. Tecnologías Utilizadas
 
-### Stack Tecnológico
 * **Lenguaje:** Java 21 LTS.
-* **Framework Web:** Spring Boot 3.3.4 (`spring-boot-starter-web`).
+* **Framework Backend:** Spring Boot 3.3.4 (`spring-boot-starter-web`).
 * **Validación de Datos:** Jakarta Bean Validation / Hibernate Validator (`spring-boot-starter-validation`).
 * **Persistencia:** JDBC Nativo (`PreparedStatement`, `ResultSet`, `try-with-resources`) con conector oficial `com.mysql:mysql-connector-j:9.2.0`.
-* **Documentación de API:** Springdoc OpenAPI 2.6.0 (`springdoc-openapi-starter-webmvc-ui` — OpenAPI 3.0.1 y Swagger UI).
+* **Documentación de la API:** Springdoc OpenAPI 2.6.0 (`springdoc-openapi-starter-webmvc-ui` — OpenAPI 3.0.1 y Swagger UI).
 * **Pruebas Automatizadas:** JUnit 5, Mockito, Spring Boot Test y `MockMvc` (`spring-boot-starter-test`).
 * **Gestor de Construcción:** Apache Maven 3.9+.
 
-### Requisitos Previos de Ejecución
-1. **JDK 21 LTS** instalado y configurado en la variable de entorno `JAVA_HOME`.
-2. **Apache Maven 3.9+** disponible en el `PATH`.
-3. **MySQL Server 8.x o 9.x** en ejecución local (puerto `3306` por defecto) con el esquema `smart_parking` creado.
+---
+
+## 3. Arquitectura del Backend
+
+La API está estructurada bajo el patrón de separación de responsabilidades en capas:
+
+1. **Capa de Exposición REST (`controller/`):** Recibe las peticiones HTTP en formato JSON, aplica la validación `@Valid` sobre los DTOs de entrada y retorna respuestas estandarizadas (`ResponseEntity`) con los códigos de estado HTTP apropiados (`200`, `201`, `204`, `400`, `404`, `409`, `500`).
+2. **Capa de Lógica de Negocio (`service/` y `service/impl/`):** Orquesta las reglas de negocio (normalización de placas y documentos, asignación de fecha/hora por defecto, verificación de unicidad documental de clientes y validación de existencia previa de registros de parqueo antes de registrar o eliminar pagos).
+3. **Capa de Acceso a Datos (`dao/` y `dao/impl/`):** Ejecuta consultas SQL parametrizadas mediante `PreparedStatement` y gestiona el cierre automático de conexiones con bloques `try-with-resources`.
+4. **Capa Transversal (`config/`, `dto/`, `exception/`, `model/`):** Centraliza la conexión JDBC (`ConexionBD`), políticas CORS (`CorsConfig`), especificación OpenAPI (`OpenApiConfig`), contratos de transferencia (`dto/`) y captura global de excepciones (`GlobalExceptionHandler`).
+
+```text
+backend/
+├── pom.xml                                # Configuración Maven y dependencias
+├── README.md                              # Documentación de la API del proyecto (EV04)
+└── src/
+    ├── main/
+    │   ├── java/com/sena/smartparking/
+    │   │   ├── SmartParkingApplication.java
+    │   │   ├── Main.java
+    │   │   ├── config/                    # ConexionBD, CorsConfig, OpenApiConfig
+    │   │   ├── controller/                # HealthController, RegistroParqueoController, ClienteController, PagoController
+    │   │   ├── service/                   # Interfaces y clases *ServiceImpl
+    │   │   ├── dao/                       # Interfaces y clases *DAOImpl (JDBC)
+    │   │   ├── dto/                       # Objetos Request, Response y ErrorResponse
+    │   │   ├── exception/                 # GlobalExceptionHandler y excepciones HTTP
+    │   │   └── model/                     # Entidades del modelo de datos
+    │   └── resources/
+    │       ├── application.properties     # Puerto 8080, UTF-8 y rutas de Swagger
+    │       └── db.properties.example      # Plantilla segura de conexión MySQL
+    └── test/
+        └── java/com/sena/smartparking/
+            ├── SmartParkingApplicationTests.java
+            ├── controller/                # Pruebas MockMvc de los controladores REST
+            └── service/                   # Pruebas unitarias con Mockito de los servicios
+```
 
 ---
 
-## 3. Configuración de Base de Datos MySQL y Credenciales Locales
+## 4. Configuración de la Conexión a MySQL e Instrucciones de Ejecución
 
-### 3.1 Preparación del Esquema MySQL (`smart_parking`)
-Asegúrese de contar con la base de datos `smart_parking` activa en su servidor MySQL local con las tablas del modelo relacional del proyecto:
+### 4.1 Esquema de Base de Datos MySQL (`smart_parking`)
+Asegúrese de tener **MySQL Server 8.x o 9.x** activo en el puerto `3306` y ejecute el siguiente script DDL si aún no existe el esquema:
+
 ```sql
 CREATE DATABASE IF NOT EXISTS smart_parking
   CHARACTER SET utf8mb4
@@ -70,143 +104,117 @@ CREATE TABLE IF NOT EXISTS pago (
 );
 ```
 
-### 3.2 Configuración Segura de `db.properties`
-Por seguridad, el archivo `db.properties` está excluido del control de versiones mediante `.gitignore` y nunca debe subirse al repositorio.
+### 4.2 Configuración Local Segura (`db.properties`)
+El archivo `db.properties` está excluido del repositorio mediante `.gitignore` para proteger las credenciales locales.
 
-1. Ubíquese en `backend/src/main/resources/`.
-2. Copie la plantilla de ejemplo `db.properties.example` como `db.properties`:
+1. En `backend/src/main/resources/`, copie `db.properties.example` como `db.properties`:
    ```bash
    cp src/main/resources/db.properties.example src/main/resources/db.properties
    ```
-3. Edite `src/main/resources/db.properties` con sus credenciales locales reales (sin exponerlas en Git):
+2. Configure sus credenciales locales en `src/main/resources/db.properties`:
    ```properties
    db.url=jdbc:mysql://localhost:3306/smart_parking?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Bogota
    db.user=TU_USUARIO_MYSQL
    db.password=TU_CONTRASENA_AQUI
    db.driver=com.mysql.cj.jdbc.Driver
    ```
-4. El archivo `src/main/resources/application.properties` contiene únicamente parámetros de aplicación seguros para el repositorio (puerto `8080`, codificación `UTF-8` y rutas de OpenAPI/Swagger).
 
----
+### 4.3 Comandos para Compilar, Ejecutar Pruebas e Iniciar la API
+Desde el directorio `backend/`:
 
-## 4. Compilación, Pruebas y Ejecución del Servidor
-
-Ejecute los siguientes comandos desde el directorio `backend/`:
-
-### Compilar el proyecto:
 ```bash
+# 1. Compilar el proyecto
 mvn clean compile
-```
 
-### Ejecutar la suite de pruebas unitarias y de controladores (`MockMvc`):
-```bash
+# 2. Ejecutar la suite de 58 pruebas automatizadas
 mvn test
-```
 
-### Iniciar el servidor Spring Boot en el puerto `8080`:
-```bash
+# 3. Iniciar el servidor de la API en http://localhost:8080
 mvn spring-boot:run
 ```
 
 ---
 
-## 5. Documentación Interactiva (Swagger UI y OpenAPI 3)
+## 5. Documentación Interactiva con Swagger / OpenAPI 3
 
-Con el servidor en ejecución sobre `http://localhost:8080`, acceda a:
-* **Swagger UI (Interfaz Interactiva):** `http://localhost:8080/swagger-ui/index.html` *(o mediante redirección desde `http://localhost:8080/swagger-ui.html`)*
+Una vez iniciado el servidor en el puerto `8080`, la documentación interactiva de la API está disponible en:
+* **Swagger UI:** `http://localhost:8080/swagger-ui/index.html` *(o `http://localhost:8080/swagger-ui.html`)*
 * **Especificación OpenAPI 3.0.1 (JSON):** `http://localhost:8080/api-docs`
-* **Endpoint de Salud y Estado de BD:** `http://localhost:8080/api/v1/health`
 
 ---
 
-## 6. Catálogo de Endpoints RESTful por Módulo
+## 6. Endpoints REST Disponibles
 
-| Módulo | Método HTTP | Endpoint | Propósito | Códigos de Respuesta |
-| :--- | :--- | :--- | :--- | :--- |
-| **Salud y Monitoreo** | `GET` | `/api/v1/health` | Verifica disponibilidad de la API y estado de conexión JDBC con MySQL | `200` |
+| Módulo | Método HTTP | Endpoint | Descripción / Función | Códigos HTTP |
+| :--- | :---: | :--- | :--- | :--- |
+| **Salud y Monitoreo** | `GET` | `/api/v1/health` | Verifica disponibilidad de la API y estado de conexión con MySQL (`CONNECTED`) | `200` |
 | **Registros de Parqueo** | `GET` | `/api/v1/registros-parqueo` | Lista todos los registros de parqueo o filtra por parámetro opcional `?placa=` | `200`, `500` |
-| **Registros de Parqueo** | `GET` | `/api/v1/registros-parqueo/conteo` | Retorna el conteo total de registros de parqueo almacenados | `200`, `500` |
-| **Registros de Parqueo** | `GET` | `/api/v1/registros-parqueo/{id}` | Consulta el detalle de un registro de parqueo por su ID numérico | `200`, `404`, `500` |
+| **Registros de Parqueo** | `GET` | `/api/v1/registros-parqueo/conteo` | Retorna el total de registros de parqueo en la base de datos | `200`, `500` |
+| **Registros de Parqueo** | `GET` | `/api/v1/registros-parqueo/{id}` | Consulta un registro de parqueo por su ID numérico | `200`, `404`, `500` |
 | **Registros de Parqueo** | `POST` | `/api/v1/registros-parqueo` | Registra el ingreso de un vehículo y retorna cabecera `Location` | `201`, `400`, `500` |
-| **Registros de Parqueo** | `PUT` | `/api/v1/registros-parqueo/{id}` | Actualiza los datos (placa, tarifa, estado de pago) de un registro existente | `200`, `400`, `404`, `500` |
-| **Registros de Parqueo** | `DELETE` | `/api/v1/registros-parqueo/{id}` | Elimina un registro de parqueo si no tiene pagos asociados | `204`, `404`, `409`, `500` |
+| **Registros de Parqueo** | `PUT` | `/api/v1/registros-parqueo/{id}` | Actualiza placa, hora, tarifa o estado de pago de un registro existente | `200`, `400`, `404`, `500` |
+| **Registros de Parqueo** | `DELETE` | `/api/v1/registros-parqueo/{id}` | Elimina un registro de parqueo si no posee pagos asociados | `204`, `404`, `409`, `500` |
 | **Clientes** | `GET` | `/api/v1/clientes` | Lista todos los clientes registrados en el sistema | `200`, `500` |
-| **Clientes** | `GET` | `/api/v1/clientes/{id}` | Consulta el detalle de un cliente por su ID numérico | `200`, `404`, `500` |
+| **Clientes** | `GET` | `/api/v1/clientes/{id}` | Consulta el detalle de un cliente por su ID | `200`, `404`, `500` |
 | **Clientes** | `POST` | `/api/v1/clientes` | Registra un nuevo cliente validando documento único y formato de correo | `201`, `400`, `409`, `500` |
-| **Clientes** | `PUT` | `/api/v1/clientes/{id}` | Actualiza un cliente existente verificando ausencia de colisión de documento | `200`, `400`, `404`, `409`, `500` |
+| **Clientes** | `PUT` | `/api/v1/clientes/{id}` | Actualiza los datos de un cliente existente verificando ausencia de duplicidad | `200`, `400`, `404`, `409`, `500` |
 | **Pagos y Recaudos** | `GET` | `/api/v1/pagos` | Lista el historial completo de pagos registrados | `200`, `500` |
 | **Pagos y Recaudos** | `GET` | `/api/v1/pagos/{id}` | Consulta el detalle de un pago específico por su ID | `200`, `404`, `500` |
-| **Pagos y Recaudos** | `GET` | `/api/v1/pagos/registro/{idRegistro}` | Lista todos los pagos asociados a un registro de parqueo específico | `200`, `404`, `500` |
-| **Pagos y Recaudos** | `POST` | `/api/v1/pagos` | Registra un pago liquidado validando que el registro de parqueo exista | `201`, `400`, `404`, `500` |
+| **Pagos y Recaudos** | `GET` | `/api/v1/pagos/registro/{idRegistro}` | Lista los pagos asociados a un registro de parqueo específico | `200`, `404`, `500` |
+| **Pagos y Recaudos** | `POST` | `/api/v1/pagos` | Registra un pago liquidado validando existencia previa del registro de parqueo | `201`, `400`, `404`, `500` |
 
 ---
 
-## 7. Resumen de Validaciones y Manejo Global de Errores
+## 7. Instrucciones para Ejecutar y Probar la API con Postman
 
-### Validaciones de Entrada (`@Valid` / Jakarta Validation)
-* **`RegistroParqueoRequest`:**
-  * `placa`: Obligatoria, entre 5 y 10 caracteres alfanuméricos (`^[A-Za-z0-9-]+$`), normalizada a mayúsculas.
-  * `horaIngreso`: Opcional (`@PastOrPresent`); si no se envía, el servicio asigna la fecha/hora actual del servidor.
-  * `tarifaAplicada`: Obligatoria, mayor o igual a `0.00`.
-  * `estadoPago`: Obligatorio, valores permitidos `PENDIENTE`, `PAGADO`, `EXENTO` o `ANULADO`.
-* **`ClienteRequest`:**
-  * `tipoDoc`: Obligatorio, valores permitidos `CC`, `CE`, `TI`, `NIT`, `PAS` o `PEP`.
-  * `numDoc`: Obligatorio, entre 3 y 20 caracteres alfanuméricos/guiones. Se valida unicidad de `(tipo_doc, num_doc)`.
-  * `nombres`: Obligatorio, entre 2 y 100 caracteres.
-  * `correo`: Obligatorio, formato de email válido (`@Email`), máximo 100 caracteres.
-* **`PagoRequest`:**
-  * `idRegistro`: Obligatorio, entero positivo (`@Positive`) correspondiente a un registro de parqueo existente.
-  * `fechaPago`: Opcional (`@PastOrPresent`); por defecto se asigna la hora actual.
-  * `valorPagado`: Obligatorio, estrictamente mayor a cero (`@DecimalMin("0.01")`).
-  * `estadoPago`: Obligatorio, valores permitidos `APROBADO`, `PAGADO`, `PENDIENTE` o `RECHAZADO`.
-  * `tiempoLimiteSalida`: Obligatorio, entre `0` y `1440` minutos.
+1. **Iniciar el servidor:** Ejecute `mvn spring-boot:run` en `backend/` y verifique que responda en `http://localhost:8080/api/v1/health`.
+2. **Configurar cabeceras en Postman:** Para peticiones `POST` y `PUT`, agregue el encabezado `Content-Type: application/json` y seleccione `Body` → `raw` → `JSON`.
+3. **Ejemplos de Cuerpos JSON para Pruebas en Postman:**
 
-### Manejo Global de Excepciones (`GlobalExceptionHandler`)
-Todas las respuestas de error devuelven el contrato JSON uniforme `ErrorResponse` (`timestamp`, `status`, `error`, `message`, `path` y `fieldErrors` opcional):
-* **`400 Bad Request`:** Errores de validación de campos (`MethodArgumentNotValidException`), JSON mal formado (`HttpMessageNotReadableException`) o argumentos inválidos (`IllegalArgumentException`).
-* **`404 Not Found`:** Recurso inexistente en base de datos (`ResourceNotFoundException`).
-* **`409 Conflict`:** Violaciones de integridad referencial o duplicidad de negocio, como cliente con documento repetido o intento de eliminar un registro de parqueo con pagos vinculados (`IntegrityConflictException`).
-* **`500 Internal Server Error`:** Fallos inesperados o de conectividad en la capa de persistencia (`DatabaseException` / `Exception`).
-
----
-
-## 8. Estructura General de Carpetas
-
-```text
-SMART_PARKING/
-├── .gitignore                         # Reglas de exclusión (db.properties, target/, logs, IDEs)
-├── ENLACE_REPOSITORIO.txt             # Enlace al repositorio GitHub del proyecto
-├── login.html / dashboard.html / ...  # Maquetas estáticas del frontend web
-└── backend/                           # Proyecto Backend Spring Boot 3 + JDBC
-    ├── pom.xml                        # Configuración Maven (Java 21, Spring Boot 3.3.4, MySQL, Springdoc)
-    ├── README.md                      # Documentación técnica del backend
-    └── src/
-        ├── main/
-        │   ├── java/com/sena/smartparking/
-        │   │   ├── SmartParkingApplication.java
-        │   │   ├── Main.java
-        │   │   ├── config/            # ConexionBD (JDBC), CorsConfig, OpenApiConfig
-        │   │   ├── controller/        # HealthController, RegistroParqueoController, ClienteController, PagoController
-        │   │   ├── service/           # Interfaces e implementaciones (*ServiceImpl)
-        │   │   ├── dao/               # Interfaces e implementaciones JDBC (*DAOImpl)
-        │   │   ├── dto/               # Objetos de transferencia Request/Response y ErrorResponse
-        │   │   ├── exception/         # GlobalExceptionHandler y excepciones de negocio/BD
-        │   │   └── model/             # Entidades del modelo de dominio relacional
-        │   └── resources/
-        │       ├── application.properties
-        │       └── db.properties.example
-        └── test/
-            └── java/com/sena/smartparking/
-                ├── SmartParkingApplicationTests.java
-                ├── controller/        # Pruebas MockMvc de los 4 controladores REST
-                └── service/           # Pruebas unitarias con Mockito de los 3 servicios
-```
+   * **Registrar Ingreso de Vehículo (`POST http://localhost:8080/api/v1/registros-parqueo`):**
+     ```json
+     {
+       "placa": "KLM789",
+       "tarifaAplicada": 6500.00,
+       "estadoPago": "PENDIENTE"
+     }
+     ```
+   * **Actualizar Registro de Parqueo (`PUT http://localhost:8080/api/v1/registros-parqueo/{id}`):**
+     ```json
+     {
+       "placa": "KLM789",
+       "tarifaAplicada": 6500.00,
+       "estadoPago": "PAGADO"
+     }
+     ```
+   * **Registrar Nuevo Cliente (`POST http://localhost:8080/api/v1/clientes`):**
+     ```json
+     {
+       "tipoDoc": "CC",
+       "numDoc": "1020304050",
+       "nombres": "Carlos Alberto Mendoza",
+       "correo": "carlos.mendoza@email.com"
+     }
+     ```
+   * **Registrar Pago de Parqueadero (`POST http://localhost:8080/api/v1/pagos`):**
+     ```json
+     {
+       "idRegistro": 1,
+       "valorPagado": 6500.00,
+       "estadoPago": "PAGADO",
+       "tiempoLimiteSalida": 15
+     }
+     ```
 
 ---
 
-## 9. Alcance Actual, Limitaciones e Integraciones Pendientes
+## 8. Resultados Generales de las Pruebas Realizadas
 
-Para total transparencia técnica y académica sobre el alcance de la evidencia **GA7-220501096-AA5-EV03**:
-1. **Persistencia de Módulos Adicionales (`Factura`, `Transaccion`, `Comprobante`):** Aunque existen las clases de modelo en el paquete `model/`, la exposición de servicios RESTful, lógica de negocio y DAOs en esta entrega se concentra en los módulos núcleo de **Registros de Parqueo**, **Clientes**, **Pagos y Recaudos** y **Salud de la API**.
-2. **Sin Pasarelas de Pago Externas ni Facturación Electrónica DIAN:** El módulo de pagos registra los recaudos y su estado en la base de datos local MySQL; no incluye integración activa con pasarelas bancarias reales ni emisión de facturación electrónica ante la DIAN.
-3. **Integración con el Frontend Estático:** Se configuró la política CORS (`CorsConfig`) para permitir peticiones desde servidores locales de desarrollo (`localhost:5500`, `localhost:3000`, `localhost:8080`), pero las vistas HTML de la raíz corresponden a prototipos/maquetas cuya integración completa con todos los endpoints REST y autenticación de sesiones queda proyectada para fases posteriores.
+* **Compilación (`mvn clean compile`):** `BUILD SUCCESS` (45 clases compiladas con Java 21, 0 errores).
+* **Pruebas Automatizadas (`mvn test`):** `BUILD SUCCESS` — **58 pruebas ejecutadas, 58 aprobadas, 0 fallos, 0 errores, 0 omitidas**:
+  * `RegistroParqueoControllerTest` (12 pruebas) y `RegistroParqueoServiceTest` (10 pruebas)
+  * `ClienteControllerTest` (9 pruebas) y `ClienteServiceTest` (8 pruebas)
+  * `PagoControllerTest` (10 pruebas) y `PagoServiceTest` (7 pruebas)
+  * `HealthControllerTest` (1 prueba) y `SmartParkingApplicationTests` (1 prueba)
+* **Verificación de Salud y Conectividad MySQL (`/api/v1/health`):** `HTTP 200 OK` (`status: UP`, `database: CONNECTED`).
+* **Verificación de Especificación OpenAPI (`/api-docs` y `/swagger-ui/index.html`):** `HTTP 200 OK` con los 4 módulos documentados.

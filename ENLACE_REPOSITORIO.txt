@@ -1,5 +1,6 @@
-EVIDENCIA SENA: GA7-220501096-AA5-EV03 — Diseño y desarrollo de servicios web – proyecto
-(Continuación sobre repositorio base GA7-220501096-AA2-EV01)
-PROYECTO: SMART PARKING
+EVIDENCIA SENA: GA7-220501096-AA5-EV04 — API del proyecto
+PROYECTO: SMART PARKING — Sistema de Gestión de Parqueaderos
+PROGRAMA: Tecnología en Análisis y Desarrollo de Software (ADSO) — Ficha 3336134 | Grupo 6
+RAMA PRINCIPAL: main
 REPOSITORIO GITHUB:
 https://github.com/jotacabrejo-tech/SMART_PARKING_GA7_AA2_EV01

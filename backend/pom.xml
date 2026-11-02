@@ -18,7 +18,7 @@
     <packaging>jar</packaging>
 
     <name>Smart Parking Backend</name>
-    <description>API REST de Gestión de Parqueadero con Spring Boot 3 y JDBC - Evidencia SENA GA7-220501096-AA5-EV03</description>
+    <description>API REST de Gestión de Parqueadero con Spring Boot 3 y JDBC - Evidencia SENA GA7-220501096-AA5-EV04 (API del proyecto)</description>
 
     <properties>
         <java.version>21</java.version>
