@@ -1,0 +1,24 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<header class="site-header">
+    <div class="header-inner">
+        <a class="brand-title" href="${pageContext.request.contextPath}/inicio">
+            <span class="brand-badge">SP</span>
+            <div class="brand-text">
+                <h1>SMART PARKING WEB</h1>
+                <span>Módulo Jakarta Servlets &amp; JSP — Evidencia SENA GA7-220501096-AA2-EV02</span>
+            </div>
+        </a>
+        <nav class="nav-menu" aria-label="Navegación principal">
+            <a class="nav-link ${moduloActivo == 'inicio' ? 'active' : ''}"
+               href="${pageContext.request.contextPath}/inicio">Panel Principal</a>
+            <a class="nav-link ${moduloActivo == 'parqueos' ? 'active' : ''}"
+               href="${pageContext.request.contextPath}/parqueos">Registros de Parqueo</a>
+            <a class="nav-link ${moduloActivo == 'clientes' ? 'active' : ''}"
+               href="${pageContext.request.contextPath}/clientes">Clientes</a>
+            <a class="nav-link ${moduloActivo == 'pagos' ? 'active' : ''}"
+               href="${pageContext.request.contextPath}/pagos">Pagos</a>
+        </nav>
+    </div>
+</header>
+

@@ -1,0 +1,8 @@
+<%@ page pageEncoding="UTF-8" %>
+<footer class="site-footer">
+    <p>
+        <strong>SMART PARKING</strong> — Tecnólogo en Análisis y Desarrollo de Software (SENA) |
+        Evidencia <strong>GA7-220501096-AA2-EV02</strong>: Formularios HTML con Servlets (GET/POST), JSP, JDBC MySQL y Git.
+    </p>
+</footer>
+

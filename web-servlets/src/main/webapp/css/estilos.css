@@ -1,0 +1,421 @@
+:root {
+    --azul-oscuro: #0f172a;
+    --azul-medio: #1d4ed8;
+    --azul-claro: #eff6ff;
+    --verde-acento: #10b981;
+    --verde-oscuro: #059669;
+    --blanco: #ffffff;
+    --gris-fondo: #f1f5f9;
+    --gris-borde: #cbd5e1;
+    --texto-principal: #1e293b;
+    --texto-secundario: #475569;
+    --rojo-error: #dc2626;
+    --rojo-fondo: #fef2f2;
+    --amarillo-alerta: #d97706;
+    --amarillo-fondo: #fffbeb;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--gris-fondo);
+    color: var(--texto-principal);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabecera y Navegacion */
+.site-header {
+    background: linear-gradient(135deg, var(--azul-oscuro) 0%, #1e3a8a 100%);
+    color: var(--blanco);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--blanco);
+}
+
+.brand-badge {
+    background-color: var(--verde-acento);
+    color: var(--azul-oscuro);
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+}
+
+.brand-text h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.brand-text span {
+    font-size: 0.78rem;
+    color: #93c5fd;
+    display: block;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0.5rem 0.95rem;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.45);
+}
+
+/* Contenedor Principal */
+.main-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 1.75rem auto;
+    padding: 0 1.5rem;
+    flex: 1;
+}
+
+.page-banner {
+    background-color: var(--blanco);
+    border-left: 5px solid var(--azul-medio);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.page-banner h2 {
+    color: var(--azul-oscuro);
+    font-size: 1.4rem;
+}
+
+.page-banner p {
+    color: var(--texto-secundario);
+    font-size: 0.92rem;
+}
+
+/* Tarjetas de Indicadores */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+}
+
+.kpi-card {
+    background: var(--blanco);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+    border-top: 4px solid var(--azul-medio);
+}
+
+.kpi-card.accent-green {
+    border-top-color: var(--verde-acento);
+}
+
+.kpi-card.accent-amber {
+    border-top-color: var(--amarillo-alerta);
+}
+
+.kpi-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--texto-secundario);
+    font-weight: 600;
+}
+
+.kpi-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--azul-oscuro);
+    margin: 0.35rem 0;
+}
+
+.kpi-sub {
+    font-size: 0.82rem;
+    color: var(--texto-secundario);
+}
+
+/* Tarjetas de Modulos y Secciones */
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+}
+
+.card {
+    background-color: var(--blanco);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+    margin-bottom: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.15rem;
+    color: var(--azul-oscuro);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--gris-fondo);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.method-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.method-get {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.method-post {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+/* Layout de dos columnas (Formulario POST + Busqueda GET) */
+.two-col-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 860px) {
+    .two-col-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Formularios */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 0.35rem;
+    color: var(--azul-oscuro);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="datetime-local"],
+select {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--gris-borde);
+    border-radius: 6px;
+    font-size: 0.92rem;
+    color: var(--texto-principal);
+    background-color: var(--blanco);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--azul-medio);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary {
+    background-color: var(--azul-medio);
+    color: var(--blanco);
+}
+
+.btn-primary:hover {
+    background-color: #1e40af;
+}
+
+.btn-success {
+    background-color: var(--verde-oscuro);
+    color: var(--blanco);
+}
+
+.btn-success:hover {
+    background-color: #047857;
+}
+
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: var(--texto-principal);
+}
+
+.btn-secondary:hover {
+    background-color: #cbd5e1;
+}
+
+/* Alertas de Exito y Error */
+.alert {
+    padding: 0.95rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+    font-size: 0.93rem;
+}
+
+.alert-success {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border-left: 5px solid var(--verde-acento);
+}
+
+.alert-error {
+    background-color: var(--rojo-fondo);
+    color: var(--rojo-error);
+    border-left: 5px solid var(--rojo-error);
+}
+
+/* Tablas */
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+thead th {
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+}
+
+tbody td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+tbody tr:hover {
+    background-color: var(--azul-claro);
+}
+
+/* Etiquetas de Estado */
+.badge {
+    display: inline-block;
+    padding: 0.22rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.badge-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.badge-info {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.badge-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Pie de pagina */
+.site-footer {
+    background-color: var(--azul-oscuro);
+    color: #94a3b8;
+    text-align: center;
+    padding: 1.15rem 1.5rem;
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+.site-footer strong {
+    color: var(--blanco);
+}
+

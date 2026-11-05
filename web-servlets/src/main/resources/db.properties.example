@@ -1,0 +1,7 @@
+# Plantilla de configuracion de conexion JDBC para el modulo web-servlets (Smart Parking)
+# Copie este archivo como db.properties en este mismo directorio y configure sus credenciales locales.
+db.url=jdbc:mysql://localhost:3306/smart_parking?useSSL=false&serverTimezone=America/Bogota&allowPublicKeyRetrieval=true
+db.user=root
+db.password=TU_PASSWORD_AQUI
+db.driver=com.mysql.cj.jdbc.Driver
+
