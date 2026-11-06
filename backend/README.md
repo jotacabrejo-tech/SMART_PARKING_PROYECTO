@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS registro_parqueo (
     id_registro INT AUTO_INCREMENT PRIMARY KEY,
     placa VARCHAR(10) NOT NULL,
     hora_ingreso DATETIME NOT NULL,
-    tarifa_aplicada DECIMAL(10,2) NOT NULL,
+    valor_calculado DECIMAL(10,2) NOT NULL,
     estado_pago VARCHAR(20) NOT NULL
 );
 
@@ -174,7 +174,7 @@ Una vez iniciado el servidor en el puerto `8080`, la documentación interactiva 
      ```json
      {
        "placa": "KLM789",
-       "tarifaAplicada": 6500.00,
+       "valorCalculado": 6500.00,
        "estadoPago": "PENDIENTE"
      }
      ```
@@ -182,7 +182,7 @@ Una vez iniciado el servidor en el puerto `8080`, la documentación interactiva 
      ```json
      {
        "placa": "KLM789",
-       "tarifaAplicada": 6500.00,
+       "valorCalculado": 6500.00,
        "estadoPago": "PAGADO"
      }
      ```
