@@ -183,13 +183,38 @@ public class PagoServlet extends HttpServlet {
                 return;
             }
 
+            RegistroParqueo registro = registroRelacionado.get();
+            List<Pago> pagosExistentes = pagoDAO.listarPorIdRegistro(idRegistro);
+            Optional<Pago> pagoConfirmadoPrevio = pagosExistentes.stream()
+                    .filter(p -> p.getEstadoPago() != null
+                            && ("APROBADO".equalsIgnoreCase(p.getEstadoPago())
+                                || "PAGADO".equalsIgnoreCase(p.getEstadoPago())))
+                    .findFirst();
+
+            if ("PAGADO".equalsIgnoreCase(registro.getEstadoPago()) || pagoConfirmadoPrevio.isPresent()) {
+                preservarDatosFormulario(request, idRegistroRaw, valorPagadoRaw, fechaPagoRaw, estadoPago, tiempoLimiteRaw);
+                String detallePrevio = pagoConfirmadoPrevio
+                        .map(p -> " (Pago ID #" + p.getIdPago() + " en estado " + p.getEstadoPago() + ")")
+                        .orElse(" (Estado del registro: PAGADO)");
+                request.setAttribute("mensajeError",
+                        "El registro de parqueo #" + idRegistro + " (Placa: " + registro.getPlaca() + ") ya cuenta con un pago confirmado"
+                        + detallePrevio + ". No se permiten pagos duplicados.");
+                cargarDatosEnRequest(request, null);
+                request.getRequestDispatcher(VISTA_PAGOS).forward(request, response);
+                return;
+            }
+
             Pago nuevoPago = new Pago(idRegistro, fechaPago, valorPagado, estadoPago, tiempoLimiteSalida);
             int idPagoGenerado = pagoDAO.insertar(nuevoPago);
+
+            if ("APROBADO".equalsIgnoreCase(estadoPago) || "PAGADO".equalsIgnoreCase(estadoPago)) {
+                registroParqueoDAO.actualizarEstadoPago(idRegistro, "PAGADO");
+            }
 
             request.setAttribute("mensajeExito",
                     "Pago registrado exitosamente con ID #" + idPagoGenerado
                     + " asociado al registro #" + idRegistro
-                    + " (Placa: " + registroRelacionado.get().getPlaca() + ").");
+                    + " (Placa: " + registro.getPlaca() + ").");
         } catch (SQLException ex) {
             preservarDatosFormulario(request, idRegistroRaw, valorPagadoRaw, fechaPagoRaw, estadoPago, tiempoLimiteRaw);
             request.setAttribute("mensajeError",

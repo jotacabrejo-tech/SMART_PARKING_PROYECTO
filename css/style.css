@@ -1152,6 +1152,8 @@ RESPONSIVE LOGIN
 
     flex:1;
 
+    min-width:0;
+
     margin-left:280px;
 
     display:flex;

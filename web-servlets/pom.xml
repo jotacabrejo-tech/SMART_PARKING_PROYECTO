@@ -135,7 +135,8 @@
                         <containerId>tomcat10x</containerId>
                         <zipUrlInstaller>
                             <url>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</url>
-                            <installDir>${java.io.tmpdir}/smart-parking-cargo/installs</installDir>
+                            <downloadDir>${java.io.tmpdir}/smart-parking-cargo/downloads</downloadDir>
+                            <extractDir>${java.io.tmpdir}/smart-parking-cargo/extracts</extractDir>
                         </zipUrlInstaller>
                     </container>
                     <configuration>

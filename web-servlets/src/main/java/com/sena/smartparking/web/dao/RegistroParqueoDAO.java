@@ -17,5 +17,7 @@ public interface RegistroParqueoDAO {
     List<RegistroParqueo> listarTodos() throws SQLException;
 
     List<RegistroParqueo> buscarPorFiltros(String placa, String estadoPago) throws SQLException;
+
+    boolean actualizarEstadoPago(int idRegistro, String estadoPago) throws SQLException;
 }
 

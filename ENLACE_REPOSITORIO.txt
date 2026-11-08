@@ -1,5 +1,5 @@
 PROYECTO PERMANENTE: SMART PARKING — Sistema de Gestión de Parqueaderos
-EVIDENCIA ACADÉMICA ACTUAL: GA7-220501096-AA3-EV01 — Codificación de módulos del software stand-alone, web y móvil
+EVIDENCIA ACADÉMICA ACTUAL: GA7-220501096-AA3-EV02 — Módulos de software stand-alone, web y móvil codificados y probados
 PROGRAMA: Tecnología en Análisis y Desarrollo de Software (ADSO) — Ficha 3336134 | Grupo 6
 RAMA PRINCIPAL: main
 REPOSITORIO GITHUB PERMANENTE:

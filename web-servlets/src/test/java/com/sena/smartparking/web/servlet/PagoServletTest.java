@@ -103,7 +103,9 @@ class PagoServletTest {
         when(request.getParameter("estadoPago")).thenReturn("APROBADO");
         when(request.getParameter("tiempoLimiteSalida")).thenReturn("15");
         when(registroParqueoDAO.buscarPorId(5)).thenReturn(Optional.of(regExistente));
+        when(pagoDAO.listarPorIdRegistro(5)).thenReturn(List.of());
         when(pagoDAO.insertar(any(Pago.class))).thenReturn(21);
+        when(registroParqueoDAO.actualizarEstadoPago(5, "PAGADO")).thenReturn(true);
         when(pagoDAO.listarTodos()).thenReturn(List.of());
         when(registroParqueoDAO.listarTodos()).thenReturn(List.of(regExistente));
 
@@ -111,11 +113,36 @@ class PagoServletTest {
 
         ArgumentCaptor<Pago> captor = ArgumentCaptor.forClass(Pago.class);
         verify(pagoDAO).insertar(captor.capture());
+        verify(registroParqueoDAO).actualizarEstadoPago(5, "PAGADO");
         assertEquals(5, captor.getValue().getIdRegistro());
         assertEquals(new BigDecimal("5000.00"), captor.getValue().getValorPagado());
         assertEquals("APROBADO", captor.getValue().getEstadoPago());
         assertEquals(15, captor.getValue().getTiempoLimiteSalida());
         verify(request).setAttribute(eq("mensajeExito"), contains("#21"));
+        verify(dispatcher).forward(request, response);
+    }
+
+    @Test
+    @DisplayName("doPost con registro que ya posee pago confirmado debe rechazar para evitar pagos duplicados")
+    void doPostConPagoConfirmadoPrevioDebeRechazarPagoDuplicado() throws Exception {
+        RegistroParqueo regExistente = new RegistroParqueo(16, "SRV202", LocalDateTime.now(), new BigDecimal("5000.00"), "PENDIENTE");
+        Pago pagoExistente = new Pago(6, 16, LocalDateTime.now(), new BigDecimal("5000.00"), "APROBADO", 15);
+
+        when(request.getParameter("idRegistro")).thenReturn("16");
+        when(request.getParameter("valorPagado")).thenReturn("5000.00");
+        when(request.getParameter("fechaPago")).thenReturn("");
+        when(request.getParameter("estadoPago")).thenReturn("APROBADO");
+        when(request.getParameter("tiempoLimiteSalida")).thenReturn("15");
+        when(registroParqueoDAO.buscarPorId(16)).thenReturn(Optional.of(regExistente));
+        when(pagoDAO.listarPorIdRegistro(16)).thenReturn(List.of(pagoExistente));
+        when(pagoDAO.listarTodos()).thenReturn(List.of(pagoExistente));
+        when(registroParqueoDAO.listarTodos()).thenReturn(List.of(regExistente));
+
+        servlet.doPost(request, response);
+
+        verify(pagoDAO, never()).insertar(any());
+        verify(registroParqueoDAO, never()).actualizarEstadoPago(anyInt(), anyString());
+        verify(request).setAttribute(eq("mensajeError"), contains("No se permiten pagos duplicados"));
         verify(dispatcher).forward(request, response);
     }
 

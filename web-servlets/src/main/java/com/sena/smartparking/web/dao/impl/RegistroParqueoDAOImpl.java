@@ -31,6 +31,9 @@ public class RegistroParqueoDAOImpl implements RegistroParqueoDAO {
             "SELECT id_registro, placa, hora_ingreso, valor_calculado, estado_pago "
             + "FROM registro_parqueo ORDER BY id_registro DESC";
 
+    private static final String SQL_UPDATE_ESTADO =
+            "UPDATE registro_parqueo SET estado_pago = ? WHERE id_registro = ?";
+
     private final ConexionBD conexionBD;
 
     public RegistroParqueoDAOImpl() {
@@ -124,6 +127,18 @@ public class RegistroParqueoDAOImpl implements RegistroParqueoDAO {
             }
         }
         return lista;
+    }
+
+    @Override
+    public boolean actualizarEstadoPago(int idRegistro, String estadoPago) throws SQLException {
+        try (Connection conn = conexionBD.getConnection();
+             PreparedStatement ps = conn.prepareStatement(SQL_UPDATE_ESTADO)) {
+
+            ps.setString(1, estadoPago.trim().toUpperCase());
+            ps.setInt(2, idRegistro);
+
+            return ps.executeUpdate() > 0;
+        }
     }
 
     private RegistroParqueo mapearFila(ResultSet rs) throws SQLException {
